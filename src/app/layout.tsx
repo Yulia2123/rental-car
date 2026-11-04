@@ -1,0 +1,26 @@
+import type { Metadata } from "next";
+import TanStackProvider from "@/providers/TanStackProvider";
+import { Toaster } from "react-hot-toast";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "RentalCar | Car Rental",
+  description: "Find and rent your perfect car with RentalCar.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <TanStackProvider>
+          {children}
+          <Toaster position="top-right" />
+        </TanStackProvider>
+      </body>
+    </html>
+  );
+}
