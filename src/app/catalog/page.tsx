@@ -1,0 +1,7 @@
+export default function CatalogPage() {
+  return (
+    <main>
+      <h1>Car Catalog</h1>
+    </main>
+  );
+}

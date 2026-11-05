@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RentalCar | Car Rental",
+  title: "Rental Car",
   description: "Find and rent your perfect car with RentalCar.",
 };
 
