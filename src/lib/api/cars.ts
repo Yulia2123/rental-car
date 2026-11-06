@@ -27,3 +27,25 @@ export const getCarById = async (id: string): Promise<Car> => {
 
   return data;
 };
+
+export interface BookingRequest {
+  name: string;
+  email: string;
+  comment: string;
+}
+
+export interface BookingResponse {
+  message: string;
+}
+
+export const createBookingRequest = async (
+  carId: string,
+  bookingData: BookingRequest
+): Promise<BookingResponse> => {
+  const { data } = await api.post<BookingResponse>(
+    `/cars/${carId}/booking-requests`,
+    bookingData
+  );
+
+  return data;
+};

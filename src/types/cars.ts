@@ -20,6 +20,7 @@ export interface Car {
   location: CarLocation;
   rentalConditions: string[];
   mileage: number;
+  stockNumber: number;
 }
 
 export interface CarsResponse {
