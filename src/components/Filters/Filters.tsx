@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import type { CarsFilters } from "@/types/cars";
+import toast from "react-hot-toast";
 
 interface FiltersProps {
   onSearch: (filters: CarsFilters) => void;
@@ -31,11 +32,22 @@ export default function Filters({ onSearch }: FiltersProps) {
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (
+      minMileage !== "" &&
+      maxMileage !== "" &&
+      Number(minMileage) > Number(maxMileage)
+    ) {
+      toast.error(
+        "Мінімальний пробіг не може перевищувати максимальний пробіг."
+      );
+      return;
+    }
+
     const filters: CarsFilters = {
       ...(brand && { brand }),
       ...(price && { price: Number(price) }),
-      ...(minMileage && { minMileage: Number(minMileage) }),
-      ...(maxMileage && { maxMileage: Number(maxMileage) }),
+      ...(minMileage !== "" && { minMileage: Number(minMileage) }),
+      ...(maxMileage !== "" && { maxMileage: Number(maxMileage) }),
     };
 
     onSearch(filters);

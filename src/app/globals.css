@@ -26,6 +26,9 @@
 html {
   scroll-behavior: smooth;
 }
+html::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   margin: 0;
@@ -96,7 +99,7 @@ ol {
 }
 
 .header-logo span {
-  color: var(--button);
+  color: var(--light-blue);
 }
 
 .header-nav {
@@ -116,7 +119,7 @@ ol {
 
 .header-link:hover,
 .header-link-active {
-  color: var(--button);
+  color: var(--light-blue);
 }
 
 .hero {
@@ -429,15 +432,19 @@ ol {
   display: block;
   margin: 64px auto 0;
   padding: 0;
-  border: none;
+  width: 156px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--light-blue);
   background: transparent;
-  color: var(--button);
+  color: var(--main);
   font-size: 16px;
   font-weight: 600;
 }
 
 .load-more-button:hover {
-  color: var(--button-hover);
+  background-color: var(--light-blue);
+  color: var(--white);
 }
 
 .load-more-button:disabled {
@@ -645,4 +652,9 @@ ol {
   background-color: var(--white);
   border-radius: 16px;
   padding: 24px;
+}
+
+.cars-content {
+  position: relative;
+  min-height: 300px;
 }

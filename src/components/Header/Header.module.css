@@ -26,7 +26,7 @@
 }
 
 .logoAccent {
-  color: #3470ff;
+  color: var(--light-blue);
 }
 
 .nav {
@@ -45,9 +45,9 @@
 }
 
 .navLink:hover {
-  color: #3470ff;
+  color: var(--light-blue);
 }
 
 .active {
-  color: #3470ff;
+  color: var(--light-blue);
 }

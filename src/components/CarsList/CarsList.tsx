@@ -3,39 +3,41 @@
 import { useCars } from "@/lib/hooks/useCars";
 import CarCards from "@/components/CarCards/CarCards";
 import LoadMore from "@/components/LoadMore/LoadMore";
-import type { CarsFilters } from "@/types/cars";
 import Loader from "@/components/Loader/Loader";
+import CatalogLoader from "@/components/CatalogLoader/CatalogLoader";
+import NotFound from "@/components/NotFound/NotFound";
+
+import type { CarsFilters } from "@/types/cars";
 
 interface CarsListProps {
   filters: CarsFilters;
+  onReset: () => void;
 }
 
-export default function CarsList({ filters }: CarsListProps) {
+export default function CarsList({ filters, onReset }: CarsListProps) {
   const {
     data,
-    isLoading,
+    isFetching,
     isError,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
   } = useCars(filters);
 
+  const isCatalogLoading = isFetching && !isFetchingNextPage;
+
   const cars = data?.pages.flatMap((page) => page.cars) ?? [];
 
-  if (isLoading) {
-    return <Loader size="large" />;
-  }
-
-  if (isError) {
-    return <p>Failed to load cars. Please try again.</p>;
-  }
-
-  if (cars.length === 0) {
-    return <p>No cars found.</p>;
-  }
-
   return (
-    <>
+    <div className="cars-content">
+      {isCatalogLoading && <CatalogLoader />}
+
+      {isError && <p>Failed to load cars. Please try again.</p>}
+
+      {!isCatalogLoading && !isError && cars.length === 0 && (
+        <NotFound onReset={onReset} />
+      )}
+
       <div className="cars-list">
         {cars.map((car) => (
           <CarCards key={car.id} car={car} />
@@ -48,7 +50,8 @@ export default function CarsList({ filters }: CarsListProps) {
           disabled={isFetchingNextPage}
         />
       )}
+
       {isFetchingNextPage && <Loader size="medium" />}
-    </>
+    </div>
   );
 }

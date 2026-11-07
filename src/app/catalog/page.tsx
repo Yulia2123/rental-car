@@ -18,8 +18,7 @@ export default function CatalogPage() {
       <main className="catalog">
         <div className="catalog-container">
           <Filters onSearch={setFilters} />
-
-          <CarsList filters={filters} />
+          <CarsList filters={filters} onReset={() => setFilters({})} />
         </div>
       </main>
     </>
