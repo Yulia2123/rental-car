@@ -47,7 +47,7 @@ export default function CarDetailsContent() {
           </div>
 
           <p>
-            {car.location.address}, {car.location.city}, {car.location.country}
+            {car.location.city}, {car.location.country}
           </p>
 
           <p className="car-details-price">${car.rentalPrice}</p>
@@ -55,27 +55,70 @@ export default function CarDetailsContent() {
           <p className="car-details-description">{car.description}</p>
 
           <section className="car-info-section">
-            <h2>Specifications</h2>
-            <p>Type: {car.type}</p>
-            <p>Fuel consumption: {car.fuelConsumption}</p>
-            <p>Engine: {car.engine}</p>
-            <p>Mileage: {car.mileage.toLocaleString("en-US")} km</p>
-          </section>
-
-          <section className="car-info-section">
-            <h2>Features</h2>
-            <ul>
-              {car.features.map((feature) => (
-                <li key={feature}>{feature}</li>
+            <h2>Rental conditions</h2>
+            <ul className="car-check-list">
+              {car.rentalConditions.map((condition) => (
+                <li key={condition}>
+                  <svg width="16" height="16" aria-hidden="true">
+                    <use href="/icons/icons.svg#check-circle" />
+                  </svg>
+                  <span>{condition}</span>
+                </li>
               ))}
             </ul>
           </section>
 
           <section className="car-info-section">
-            <h2>Rental conditions</h2>
-            <ul>
-              {car.rentalConditions.map((condition) => (
-                <li key={condition}>{condition}</li>
+            <h2>Car Specifications</h2>
+
+            <div className="car-specifications-list">
+              <div className="car-specification-item">
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons/icons.svg#calendar" />
+                </svg>
+                <p>Year: {car.year}</p>
+              </div>
+
+              <div className="car-specification-item">
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons/icons.svg#car" />
+                </svg>
+                <p>Type: {car.type}</p>
+              </div>
+
+              <div className="car-specification-item">
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons/icons.svg#fuel" />
+                </svg>
+                <p>Fuel consumption: {car.fuelConsumption}</p>
+              </div>
+
+              <div className="car-specification-item">
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons/icons.svg#settings" />
+                </svg>
+                <p>Engine: {car.engine}</p>
+              </div>
+
+              <div className="car-specification-item">
+                <svg width="16" height="16" aria-hidden="true">
+                  <use href="/icons/icons.svg#mileage" />
+                </svg>
+                <p>Mileage: {car.mileage.toLocaleString("en-US")} km</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="car-info-section">
+            <h2>Features</h2>
+            <ul className="car-check-list">
+              {car.features.map((feature) => (
+                <li key={feature}>
+                  <svg width="16" height="16" aria-hidden="true">
+                    <use href="/icons/icons.svg#check-circle" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
               ))}
             </ul>
           </section>

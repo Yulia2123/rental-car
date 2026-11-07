@@ -5,9 +5,8 @@ import CarDetailsContent from "./CarDetailsContent";
 export default function CarDetailsPage() {
   return (
     <>
-      <Header />
-
       <Suspense fallback={<p>Loading car details...</p>}>
+        <Header />
         <CarDetailsContent />
       </Suspense>
     </>
