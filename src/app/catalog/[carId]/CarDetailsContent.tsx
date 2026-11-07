@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useCarById } from "@/lib/hooks/useCarById";
 import Form from "@/components/Form/Form";
 import Loader from "@/components/Loader/Loader";
+import styles from "./CarDetailsContent.module.css";
 
 export default function CarDetailsContent() {
   const { carId } = useParams<{ carId: string }>();
@@ -46,7 +47,10 @@ export default function CarDetailsContent() {
             <span className="car-article">Article: {car.stockNumber}</span>
           </div>
 
-          <p>
+          <p className={styles.location}>
+            <svg width="12" height="15" aria-hidden="true">
+              <use href="/icons/icons.svg#location" />
+            </svg>
             {car.location.city}, {car.location.country}
           </p>
 

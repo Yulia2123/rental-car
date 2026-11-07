@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import type { CarsFilters } from "@/types/cars";
 import toast from "react-hot-toast";
+import styles from "./Filters.module.css";
 
 interface FiltersProps {
   onSearch: (filters: CarsFilters) => void;
+}
+
+interface DropdownProps {
+  id: string;
+  label: string;
+  placeholder: string;
+  options: (string | number)[];
+  value: string;
+  onChange: (value: string) => void;
 }
 
 const brands = [
@@ -23,6 +33,90 @@ const brands = [
 
 const prices = [30, 40, 50, 60, 70, 80];
 
+function Dropdown({
+  id,
+  label,
+  placeholder,
+  options,
+  value,
+  onChange,
+}: DropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className={styles.filterField}>
+      <label className={styles.label} id={`${id}-label`}>
+        {label}
+      </label>
+
+      <div className={styles.selectWrapper} ref={dropdownRef}>
+        <button
+          type="button"
+          className={`${styles.select} ${isOpen ? styles.selectOpen : ""}`}
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-labelledby={`${id}-label`}
+        >
+          <span className={value ? "" : styles.placeholder}>
+            {value || placeholder}
+          </span>
+
+          <svg
+            className={styles.selectIcon}
+            width="16"
+            height="16"
+            aria-hidden="true"
+          >
+            <use href={`/icons/icons.svg#${isOpen ? "up" : "down"}`} />
+          </svg>
+        </button>
+
+        {isOpen && (
+          <ul className={styles.dropdownList} role="listbox">
+            {options.map((option) => (
+              <li key={option}>
+                <button
+                  type="button"
+                  className={`${styles.dropdownOption} ${
+                    value === String(option) ? styles.selectedOption : ""
+                  }`}
+                  onClick={() => {
+                    onChange(String(option));
+                    setIsOpen(false);
+                  }}
+                  role="option"
+                  aria-selected={value === String(option)}
+                >
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Filters({ onSearch }: FiltersProps) {
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
@@ -37,9 +131,7 @@ export default function Filters({ onSearch }: FiltersProps) {
       maxMileage !== "" &&
       Number(minMileage) > Number(maxMileage)
     ) {
-      toast.error(
-        "Мінімальний пробіг не може перевищувати максимальний пробіг."
-      );
+      toast.error("The minimum mileage cannot exceed the maximum mileage.");
       return;
     }
 
@@ -63,47 +155,31 @@ export default function Filters({ onSearch }: FiltersProps) {
   };
 
   return (
-    <form className="filters" onSubmit={handleSearch}>
-      <div className="filter-field">
-        <label htmlFor="brand">Car brand</label>
+    <form className={styles.filters} onSubmit={handleSearch}>
+      <Dropdown
+        id="brand"
+        label="Car brand"
+        placeholder="Choose a brand"
+        options={brands}
+        value={brand}
+        onChange={setBrand}
+      />
 
-        <select
-          id="brand"
-          value={brand}
-          onChange={(event) => setBrand(event.target.value)}
-        >
-          <option value="">Choose a brand</option>
+      <Dropdown
+        id="price"
+        label="Price / 1 hour"
+        placeholder="Choose a price"
+        options={prices}
+        value={price}
+        onChange={setPrice}
+      />
 
-          {brands.map((brand) => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className={`${styles.filterField} ${styles.mileageField}`}>
+        <label className={styles.label} htmlFor="minMileage">
+          Car mileage / km
+        </label>
 
-      <div className="filter-field">
-        <label htmlFor="price">Price / 1 hour</label>
-
-        <select
-          id="price"
-          value={price}
-          onChange={(event) => setPrice(event.target.value)}
-        >
-          <option value="">Choose a price</option>
-
-          {prices.map((price) => (
-            <option key={price} value={price}>
-              {price}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="filter-field mileage-field">
-        <label htmlFor="minMileage">Car mileage / km</label>
-
-        <div className="mileage-inputs">
+        <div className={styles.mileageInputs}>
           <input
             id="minMileage"
             type="number"
@@ -124,12 +200,16 @@ export default function Filters({ onSearch }: FiltersProps) {
         </div>
       </div>
 
-      <div className="filter-actions">
-        <button type="submit" className="search-button">
+      <div className={styles.filterActions}>
+        <button type="submit" className={styles.searchButton}>
           Search
         </button>
 
-        <button type="button" className="clear-filters" onClick={handleClear}>
+        <button
+          type="button"
+          className={styles.clearFilters}
+          onClick={handleClear}
+        >
           Clear filters
         </button>
       </div>
