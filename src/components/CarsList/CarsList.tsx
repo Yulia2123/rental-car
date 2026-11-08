@@ -28,18 +28,24 @@ export default function CarsList({ filters, onReset }: CarsListProps) {
 
   const cars = data?.pages.flatMap((page) => page.cars) ?? [];
 
+  const filteredCars = filters.price
+    ? cars
+        .filter((car) => Number(car.rentalPrice) >= filters.price!)
+        .sort((a, b) => Number(a.rentalPrice) - Number(b.rentalPrice))
+    : cars;
+
   return (
     <div className="cars-content">
       {isCatalogLoading && <CatalogLoader />}
 
       {isError && <p>Failed to load cars. Please try again.</p>}
 
-      {!isCatalogLoading && !isError && cars.length === 0 && (
+      {!isCatalogLoading && !isError && filteredCars.length === 0 && (
         <NotFound onReset={onReset} />
       )}
 
       <div className="cars-list">
-        {cars.map((car) => (
+        {filteredCars.map((car) => (
           <CarCards key={car.id} car={car} />
         ))}
       </div>
