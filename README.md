@@ -15,7 +15,7 @@
 ## Посилання
 
 | Сайт | [vercel.app](https://rental-car-phi-eosin.vercel.app/) |
-| Макет | [Figma]([https://www.figma.com/design/MtFFBHr6F6WSwD5AnKypTM/%D0%9F%D1%80%D0%B8%D1%80%D0%BE%D0%B4%D0%BD%D1%96-%D0%BC%D0%B0%D0%BD%D0%B4%D1%80%D0%B8?node-id=6383-168&p=f&t=assOqWcCPreRkvxF-0](https://www.figma.com/design/tYq5MKK3rXQwIk5j5D5Ik1/Rental-Car--Copy-?node-id=12791-565&p=f&t=S6jZZE2brLvZEQNQ-0)) |
+| Макет | [Figma](https://www.figma.com/design/tYq5MKK3rXQwIk5j5D5Ik1/Rental-Car--Copy-?node-id=12791-565&p=f&t=S6jZZE2brLvZEQNQ-0) |
 
 ## Основні можливості
 
