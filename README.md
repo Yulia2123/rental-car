@@ -1,33 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RentalCar
 
-## Getting Started
+**RentalCar** — це вебзастосунок для оренди автомобілів, який дозволяє переглядати каталог доступних автомобілів, знаходити потрібний варіант за допомогою фільтрів та оформлювати заявку на оренду.
 
-First, run the development server:
+## Зміст
+
+1. [Посилання](#посилання)
+2. [Основні можливості](#основні-можливості)
+3. [Що на екрані](#що-на-екрані)
+4. [Стек](#стек)
+5. [Встановлення та запуск](#встановлення-та-запуск)
+6. [API](#API)
+7. [Автор](#автор)
+
+## Посилання
+
+| Сайт | [vercel.app](https://rental-car-phi-eosin.vercel.app/) |
+| Макет | [Figma]([https://www.figma.com/design/MtFFBHr6F6WSwD5AnKypTM/%D0%9F%D1%80%D0%B8%D1%80%D0%BE%D0%B4%D0%BD%D1%96-%D0%BC%D0%B0%D0%BD%D0%B4%D1%80%D0%B8?node-id=6383-168&p=f&t=assOqWcCPreRkvxF-0](https://www.figma.com/design/tYq5MKK3rXQwIk5j5D5Ik1/Rental-Car--Copy-?node-id=12791-565&p=f&t=S6jZZE2brLvZEQNQ-0)) |
+
+## Основні можливості
+
+- **Головна сторінка** — ознайомлення із сервісом та перехід до каталогу автомобілів.
+- **Каталог автомобілів** — перегляд доступних автомобілів із детальною інформацією.
+- **Фільтрація** — пошук автомобілів за маркою, ціною та пробігом.
+- **Пагінація** — поступове завантаження автомобілів за допомогою кнопки Load More.
+- **Сторінка автомобіля** — перегляд характеристик, опису, умов оренди та фотографії автомобіля.
+- **Форма оренди** — можливість залишити заявку на оренду автомобіля.
+- **Сповіщення** — повідомлення про результати виконання дій користувача.
+- **Індикатори завантаження** — відображення стану завантаження даних.
+
+## Стек
+
+- Next.js
+- React
+- TypeScript
+- TanStack Query
+- Axios
+- React Hook Form
+- CSS Modules
+- React Icons
+- Vercel
+
+## Встановлення та запуск
+
+### 1. Клонування репозиторію
+
+```bash
+git clone https://github.com/Yulia2123/rental-car.git
+```
+
+### 2. Перехід до директорії проєкту
+
+```bash
+cd rental-car
+```
+
+### 3. Встановлення залежностей
+
+```bash
+npm install
+```
+
+### 4. Налаштування змінних середовища
+
+Створи файл `.env.local` у кореневій директорії проєкту та додай:
+
+```env
+NEXT_PUBLIC_API_URL=https://car-rental-api.goit.study
+```
+
+### 5. Запуск проєкту в режимі розробки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Після запуску застосунок буде доступний за адресою:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 6. Створення production-збірки
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 7. Запуск production-версії локально
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API
+
+Для отримання даних та обробки заявок використовується наданий API:
+
+- [Car Rental API](https://car-rental-api.goit.study)
+- [API Documentation (Swagger)](https://car-rental-api.goit.study/api-docs/)
+
+## Автор
+
+**Юліана Снагустенко**
+
+- GitHub: [Yulia2123](https://github.com/Yulia2123)
+
+
 
 ## Deploy on Vercel
 
