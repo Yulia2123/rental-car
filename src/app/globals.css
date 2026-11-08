@@ -21,6 +21,11 @@
   --second-family: "Inter", sans-serif;
 }
 
+html[data-theme="dark"] .hero-title,
+html[data-theme="dark"] .hero-description {
+  color: #fff;
+}
+
 * {
   box-sizing: border-box;
 }

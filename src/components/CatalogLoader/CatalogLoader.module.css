@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(245, 245, 245, 0.85);
+  background: var(--overlay-bg);
 }
 
 .modal {
@@ -20,9 +20,9 @@
   min-height: 288px;
   padding: 32px;
 
-  background: #ffffff;
+  background: var(--modal-bg);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(16, 24, 40, 0.12);
+  box-shadow: var(--modal-shadow);
 
   text-align: center;
 }

@@ -5,13 +5,13 @@ import type { CarsFilters } from "@/types/cars";
 const PER_PAGE = 12;
 
 export const useCars = (filters: CarsFilters) => {
-  const { price, ...apiFilters } = filters;
+  // const { price, ...apiFilters } = filters;
 
   return useInfiniteQuery({
     queryKey: ["cars", filters],
     queryFn: ({ pageParam }) =>
       getCars({
-        ...apiFilters,
+        ...filters,
         page: pageParam,
         perPage: PER_PAGE,
       }),

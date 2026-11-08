@@ -14,6 +14,9 @@
   --dark-blue: #0095ba;
   --error: #ec383b;
   --error-light: #ffdfdf;
+  --overlay-bg: rgba(245, 245, 245, 0.85);
+  --modal-bg: #ffffff;
+  --modal-shadow: 0 8px 32px rgba(16, 24, 40, 0.12);
 }
 
 :global(html[data-theme="dark"]) {
@@ -32,6 +35,9 @@
   --dark-blue: #168eae;
   --error: #ff6868;
   --error-light: #4a2529;
+  --overlay-bg: rgba(10, 15, 22, 0.85);
+  --modal-bg: #202733;
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 :global(html[data-theme="dark"] svg) {
