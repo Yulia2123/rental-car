@@ -28,11 +28,20 @@ export default function CarsList({ filters, onReset }: CarsListProps) {
 
   const cars = data?.pages.flatMap((page) => page.cars) ?? [];
 
-  const filteredCars = filters.price
-    ? cars
-        .filter((car) => Number(car.rentalPrice) >= filters.price!)
-        .sort((a, b) => Number(a.rentalPrice) - Number(b.rentalPrice))
-    : cars;
+  const filteredCars = cars
+    .filter((car) => {
+      const matchesPrice =
+        !filters.price || Number(car.rentalPrice) >= filters.price;
+
+      const matchesMinMileage =
+        filters.minMileage === undefined || car.mileage >= filters.minMileage;
+
+      const matchesMaxMileage =
+        filters.maxMileage === undefined || car.mileage <= filters.maxMileage;
+
+      return matchesPrice && matchesMinMileage && matchesMaxMileage;
+    })
+    .sort((a, b) => Number(a.rentalPrice) - Number(b.rentalPrice));
 
   return (
     <div className="cars-content">
