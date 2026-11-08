@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
+  color-scheme: light;
+
   --main: #101828;
   --gray: #8d929a;
   --gray-light: #dadde1;
@@ -158,24 +160,25 @@ ol {
 .hero-title {
   margin: 0 0 16px;
 
-  font-size: 36px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.5px;
+  white-space: nowrap;
 }
 
 .hero-description {
   margin: 0 0 24px;
 
-  font-family: var(--second-family);
-  font-size: 16px;
-  font-weight: 400;
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: 600;
   line-height: 1.5;
 }
 
 .hero-button {
-  width: 158px;
-  min-height: 40px;
+  width: 276px;
+  min-height: 44px;
   padding: 10px 20px;
 
   display: flex;

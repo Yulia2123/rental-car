@@ -1,0 +1,83 @@
+:global(:root) {
+  color-scheme: light;
+
+  --main: #101828;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #ffffff;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+  --light-blue: #00aad4;
+  --bg: #f5f5f5;
+  --dark-blue: #0095ba;
+  --error: #ec383b;
+  --error-light: #ffdfdf;
+}
+
+:global(html[data-theme="dark"]) {
+  color-scheme: dark;
+
+  --main: #f5f5f5;
+  --gray: #a0a7b4;
+  --gray-light: #383f4b;
+  --badges: #1a202b;
+  --inputs: #252c38;
+  --white: #202733;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+  --light-blue: #35b9df;
+  --bg: #121821;
+  --dark-blue: #168eae;
+  --error: #ff6868;
+  --error-light: #4a2529;
+}
+
+:global(html[data-theme="dark"] svg) {
+  color: #fff;
+  fill: currentColor;
+  stroke: currentColor;
+}
+:global(.themeRoot) {
+  min-height: 100vh;
+}
+
+:global(.header-nav) {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+:global(.theme-toggle) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--inputs);
+  color: var(--main);
+
+  cursor: pointer;
+
+  transition: color 200ms ease, background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+:global(.theme-toggle:hover) {
+  color: var(--light-blue);
+  border-color: var(--light-blue);
+}
+
+:global(.theme-toggle svg) svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}

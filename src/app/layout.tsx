@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TanStackProvider from "@/providers/TanStackProvider";
+import ThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -17,12 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
-        <TanStackProvider>
-          {children}
-          <Toaster position="top-right" />
-        </TanStackProvider>
+        <ThemeProvider>
+          <TanStackProvider>
+            {children}
+            <Toaster position="top-right" />
+          </TanStackProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
